@@ -1,46 +1,38 @@
 import React, { useState } from 'react';
 import "../styles/Signup.css";
 
-
-const Signup = () => {
+const Signup = ({ onSignup, switchToLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
 
-  const handleSignup = async (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    try {
-      const response = await fetch('http://localhost:5000/api/user/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      });
-      const data = await response.json();
-      setMessage(data.message);
-    } catch (error) {
-      setMessage('Error signing up');
-    }
+    onSignup(username, password);
   };
 
   return (
     <div className="signup-container">
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSignup}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+      <h2>Signup</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Username: </label>
+          <input 
+            type="text" 
+            value={username} 
+            onChange={e => setUsername(e.target.value)} 
+          />
+        </div>
+        <div>
+          <label>Password: </label>
+          <input 
+            type="password" 
+            value={password} 
+            onChange={e => setPassword(e.target.value)} 
+          />
+        </div>
         <button type="submit">Sign Up</button>
       </form>
-      <p>{message}</p>
+      <button onClick={switchToLogin}>Back to Login</button>
     </div>
   );
 };

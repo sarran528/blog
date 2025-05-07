@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../styles/BlogList.css";
 
-const BlogList = () => {
+const BlogList = ({ user, onLogout }) => {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
@@ -20,6 +20,8 @@ const BlogList = () => {
 
   return (
     <div className="blog-list">
+      <h2>Welcome, {user.username}</h2>
+      <button onClick={onLogout}>Logout</button>
       <h2>Blogs</h2>
       <div className="blog-cards">
         {blogs.map((blog) => (

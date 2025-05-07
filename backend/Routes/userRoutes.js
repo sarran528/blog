@@ -1,6 +1,10 @@
 const express = require('express');
 const User = require('../Schema/userSchema');
+const cors = require('cors');
 const router = express.Router();
+
+const app = express();
+app.use(cors());
 
 // Login Route
 router.post('/login', async (req, res) => {
