@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import "../styles/Login.css";
 
 const Login = ({ onLogin, switchToSignup }) => {
@@ -8,25 +9,17 @@ const Login = ({ onLogin, switchToSignup }) => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ username, password })
-      });
-      
-      if (response.ok) {
-        const data = await response.json();
-        window.alert("Login successful");
-        // Optionally pass additional backend data (e.g. a token) to onLogin if needed
-        onLogin(username, data.token);
-      } else {
-        window.alert("Invalid credentials");
-      }
+      const response = await axios.post('http://localhost:5000/api/auth/login', { username, password });
+      window.alert("Login successful");
+      // Optionally pass additional backend data (e.g. a token) to onLogin if needed
+      onLogin(username, response.data.token);
     } catch (error) {
-      console.error("Error logging in:", error);
-      window.alert("Error logging in.");
+      if (error.response && error.response.status === 401) {
+        window.alert("Invalid credentials");
+      } else {
+        console.error("Error logging in:", error);
+        window.alert("Error logging in.");
+      }
     }
   };
 
