@@ -1,53 +1,88 @@
+body {
+    background-color: #fff;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    color: #222;
+}
+
 .blog-list {
-    width: 80%;
-    margin: 20px auto;
+    width: 90%;
+    margin: 40px auto;
+    overflow-x: hidden;
 }
+
 .blog-list h2 {
-    color: #333;
-    margin-bottom: 10px;
+    color: #005eb8; /* blue theme */
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
 }
+
 .blog-list button {
-    padding: 8px 16px;
+    padding: 10px 20px;
+    background: #ff9900; /* orange theme */
     border: none;
-    background: #d9534f;
     color: #fff;
-    border-radius: 4px;
+    font-weight: bold;
+    border-radius: 6px;
     cursor: pointer;
     margin-bottom: 20px;
+    transition: background 0.3s;
 }
+
 .blog-list button:hover {
-    background: #c9302c;
+    background: #e68a00;
 }
+
 .blog-cards {
     display: flex;
-    flex-wrap: wrap;
+    overflow-x: auto;
     gap: 20px;
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
 }
+
 .blog-card {
     background: #fff;
-    width: calc(33.333% - 20px);
-    padding: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 6px;
+    flex: 0 0 280px; /* fixed width */
+    border: 1px solid #ddd;
+    border-left: 5px solid #005eb8;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    scroll-snap-align: start;
 }
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
 .blog-card h3 {
+    color: #005eb8;
+    font-size: 20px;
     margin-top: 0;
-    color: #0275d8;
+    margin-bottom: 10px;
 }
+
 .blog-card p {
-    color: #555;
+    color: #444;
+    font-size: 14px;
+    margin-bottom: 12px;
 }
+
 .blog-card small {
-    font-size: 0.9em;
+    font-size: 12px;
     color: #999;
 }
-@media (max-width: 768px) {
-    .blog-card {
-        width: calc(50% - 20px);
-    }
+
+/* Optional scrollbar styling */
+.blog-cards::-webkit-scrollbar {
+    height: 8px;
 }
-@media (max-width: 480px) {
-    .blog-card {
-        width: 100%;
-    }
+.blog-cards::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
 }

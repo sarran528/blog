@@ -16,10 +16,7 @@ app.use('/api/auth', userRoutes);
 app.use('/api/blog', blogRoutes);
 
 // MongoDB Connection
-mongoose.connect('mongodb://localhost:27017/yourDatabaseName', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect('mongodb://localhost:27017/blog')
   .then(() => console.log("Connected to MongoDB"))
   .catch(err => console.error("MongoDB connection error:", err));
 
