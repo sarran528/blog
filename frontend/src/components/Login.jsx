@@ -11,8 +11,7 @@ const Login = ({ onLogin, switchToSignup }) => {
     try {
       const response = await axios.post('http://localhost:5000/api/auth/login', { username, password });
       window.alert("Login successful");
-      // Optionally pass additional backend data (e.g. a token) to onLogin if needed
-      onLogin(username, response.data.token);
+      onLogin(username, response.data.token); // This should update state in App.jsx to show the Blog page
     } catch (error) {
       if (error.response && error.response.status === 401) {
         window.alert("Invalid credentials");

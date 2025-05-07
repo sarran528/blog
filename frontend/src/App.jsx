@@ -8,15 +8,10 @@ const App = () => {
   const [view, setView] = useState('login'); // 'login', 'signup', 'blog'
   const [user, setUser] = useState(null);
 
-  const handleLogin = (username, password) => {
-    // Dummy authentication: username "user" and password "pass"
-    if (username === 'user' && password === 'pass') {
-      window.alert("Login successful");
-      setUser({ username });
-      setView('blog');
-    } else {
-      window.alert("Invalid credentials");
-    }
+  const handleLogin = (username, token) => {
+    // Optionally store token, then update view
+    setUser({ username });
+    setView('blog');
   };
 
   const handleSignup = (username, password) => {
